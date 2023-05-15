@@ -19,16 +19,19 @@
 
     $imagen = $_FILES["imagen"]["name"];
     $imagen_temporal = $_FILES["imagen"]["tmp_name"];
-    $carpeta_destino = "./imagenes"; 
-   
-    move_uploaded_file($imagen_temporal, $carpeta_destino . $imagen);
+    $carpeta_destino = "./imagenes/"; 
+    $ruta_imagen = $carpeta_destino . $imagen;
 
-    $sql = "INSERT INTO platillos (nombre, descripcion, precio, imagen) VALUES ('$nombre', '$descripcion', '$precio', '$imagen')";
+    if (move_uploaded_file($imagen_temporal, $ruta_imagen)) {
+      $sql = "INSERT INTO platillos (nombre, descripcion, precio, imagen) VALUES ('$nombre', '$descripcion', '$precio', '$ruta_imagen')";
 
-    if ($conn->query($sql) === TRUE) {
-      echo '<div class="alert alert-success">Platillo agregado correctamente.</div>';
+      if ($conn->query($sql) === TRUE) {
+        echo '<div class="alert alert-success">Platillo agregado correctamente.</div>';
+      } else {
+        echo '<div class="alert alert-danger">Error al agregar el platillo: ' . $conn->error . '</div>';
+      }
     } else {
-      echo '<div class="alert alert-danger">Error al agregar el platillo: ' . $conn->error . '</div>';
+      echo '<div class="alert alert-danger">Error al subir la imagen.</div>';
     }
 
     $conn->close();
