@@ -1,31 +1,55 @@
-<?php
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registro de Usuario</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
 
-require_once("db.php");
+<div class="container mt-5">
+  <h2>Registro de Usuario</h2>
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $nombre = $_POST["nombre"];
-  $email = $_POST["email"];
-  $contraseña = password_hash($_POST["contraseña"], PASSWORD_DEFAULT);
+  <?php
+  require_once("db.php");
 
-  $sql = "INSERT INTO usuarios (nombre, email, contraseña) VALUES ('$nombre', '$email', '$contraseña')";
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = $_POST["nombre"];
+    $email = $_POST["email"];
+    $contraseña = password_hash($_POST["contraseña"], PASSWORD_DEFAULT);
 
-  if ($conn->query($sql) === TRUE) {
-    echo "Registro exitoso. Ahora puedes iniciar sesión.";
-  } else {
-    echo "Error al registrar el usuario: " . $conn->error;
+    $sql = "INSERT INTO usuarios (nombre, email, contraseña) VALUES ('$nombre', '$email', '$contraseña')";
+
+    if ($conn->query($sql) === TRUE) {
+      echo '<div class="alert alert-success">Registro exitoso. Ahora puedes iniciar sesión.</div>';
+    } else {
+      echo '<div class="alert alert-danger">Error al registrar el usuario: ' . $conn->error . '</div>';
+    }
+    echo '<a href="index.php?id=" class="btn btn-primary mt-3">REGRESAR</a>';
+
+    $conn->close();
   }
-  echo "<a href='index.php?id="  . "'>REGRESAR</a>";
+  ?>
 
-  $conn->close();
-}
+  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" name="nombre" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="contraseña">Contraseña:</label>
+      <input type="password" class="form-control" name="contraseña" required>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Registrar">
+  </form>
+</div>
 
-?>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<h2>Registro de Usuario</h2>
-
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-  Nombre: <input type="text" name="nombre" required><br>
-  Email: <input type="email" name="email" required><br>
-  Contraseña: <input type="password" name="contraseña" required><br>
-  <input type="submit" value="Registrar">
-</form>
+</body>
+</html>
