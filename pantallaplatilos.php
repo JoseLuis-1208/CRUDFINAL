@@ -29,6 +29,9 @@
       max-height: 200px;
       object-fit: cover;
     }
+    .centrar{
+        text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -45,15 +48,13 @@
 
     if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()) {
-        echo '<div class="col-md-4">';
+        echo '<div class="col-md-4 centrar">';
         echo '<div class="card">';
         echo '<img src="' . $row["imagen"] . '" class="card-img-top" alt="Platillo">';
         echo '<div class="card-body">';
         echo '<h5 class="card-title">' . $row["nombre"] . '</h5>';
         echo '<p class="card-text">' . $row["descripcion"] . '</p>';
-        echo '<p class="card-text">$' . $row["precio"] . '</p>';
-        echo '<a href="edit.php?id=' . $row["id"] . '" class="btn btn-primary">Editar</a>';
-        echo '<a href="delete.php?id=' . $row["id"] . '" class="btn btn-danger">Eliminar</a>';
+        echo '<p class="card-text">$' . $row["precio"] . '</p>';   
         echo '</div>';
         echo '</div>';
         echo '</div>';
