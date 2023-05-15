@@ -1,21 +1,36 @@
-<?php
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eliminar Platillo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
 
-require_once("db.php");
+<div class="container mt-5">
+  <h1>Eliminar Platillo</h1>
 
-$id = $_GET["id"];
+  <?php
+  require_once("db.php");
 
-$sql = "DELETE FROM platillos WHERE id='$id'";
+  $id = $_GET["id"];
 
-if ($conn->query($sql) === TRUE) {
-  echo "Platillo eliminado correctamente.";
-  
-  echo "<a href='index.php?id="  . "'>REGRESAR</a>";
+  $sql = "DELETE FROM platillos WHERE id='$id'";
 
-} else {
-  echo "Error al eliminar el platillo: " . $conn->error;
+  if ($conn->query($sql) === TRUE) {
+    echo '<div class="alert alert-success">Platillo eliminado correctamente.</div>';
+  } else {
+    echo '<div class="alert alert-danger">Error al eliminar el platillo: ' . $conn->error . '</div>';
+  }
 
-}
+  $conn->close();
+  ?>
 
-$conn->close();
+  <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" class="btn btn-primary mt-3">REGRESAR</a>
+</div>
 
-?>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
