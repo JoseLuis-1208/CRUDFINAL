@@ -19,9 +19,9 @@
 
     $imagen = $_FILES["imagen"]["name"];
     $imagen_temporal = $_FILES["imagen"]["tmp_name"];
-    $carpeta_destino = "./imagenes"; 
+    $carpeta_destino = "imagenes"; 
    
-    move_uploaded_file($imagen_temporal, $carpeta_destino . $imagen);
+    move_uploaded_file($imagen_temporal, $carpeta_destino . '/' . $imagen);
 
     $sql = "INSERT INTO platillos (nombre, descripcion, precio, imagen) VALUES ('$nombre', '$descripcion', '$precio', '$imagen')";
 

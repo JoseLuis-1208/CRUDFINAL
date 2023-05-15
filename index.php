@@ -20,7 +20,9 @@
   $sql = "SELECT * FROM platillos";
   $result = $conn->query($sql);
 
+
   if ($result->num_rows > 0) {
+    echo '<a href="add.php" class="btn btn-success mb-3">Agregar Platillo</a>';
     echo '<table class="table">';
     echo '<thead class="thead-dark">';
     echo '<tr>';
@@ -39,7 +41,7 @@
       echo '<td>' . $row["nombre"] . '</td>';
       echo '<td>' . $row["descripcion"] . '</td>';
       echo '<td>$' . $row["precio"] . '</td>';
-      echo '<td><img src="' . $row["imagen"] . '" width="100"></td>';
+      echo '<td><img src="./imagenes/' . $row["imagen"] . '" width="100"></td>';
       echo '<td>';
       echo '<a href="edit.php?id=' . $row["id"] . '" class="btn btn-primary btn-sm">Editar</a>';
       echo ' <a href="delete.php?id=' . $row["id"] . '" class="btn btn-danger btn-sm">Eliminar</a>';
