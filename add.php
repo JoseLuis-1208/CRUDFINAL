@@ -19,7 +19,7 @@
 
     $imagen = $_FILES["imagen"]["name"];
     $imagen_temporal = $_FILES["imagen"]["tmp_name"];
-    $carpeta_destino = "<div class=""></div>/imagenes"; 
+    $carpeta_destino = "./imagenes"; 
    
     move_uploaded_file($imagen_temporal, $carpeta_destino . $imagen);
 
