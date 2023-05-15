@@ -57,6 +57,11 @@
       echo '</tbody>';
       echo '</table>';
     } else {
+      echo '<div> 
+      <a href="add.php" class="btn btn-success mb-3">Agregar Platillo</a>
+      <a href="pantallaplatillos.php" class="btn btn-primary mb-3">Ver Platillos</a>
+      
+      </div>';
       echo '<div class="alert alert-info">No hay platillos en la base de datos.</div>';
     }
 
