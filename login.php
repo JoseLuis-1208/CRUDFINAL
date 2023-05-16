@@ -25,9 +25,9 @@
       if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
         if (password_verify($contraseña, $row["contraseña"])) {
-          $_SESSION["usuario"] = $row["nombre"];
-          $query = "UPDATE usuarios SET estado = true WHERE email='$email'"; // Actualiza el estado del usuario a conectado
-          $conn->query($query);
+            $_SESSION["usuario"] = $row["nombre"];
+            $query = "UPDATE usuarios SET estado = true WHERE email='$email'"; // Actualiza el estado del usuario a conectado
+            $conn->query($query);
           header("Location: index.php");
         } else {
           echo '<div class="alert alert-danger">Contraseña incorrecta.</div>';
