@@ -66,12 +66,11 @@
 </head>
 
 <body>
-<a href="index.php" class="btn btn-primary ">Ir a inicio</a>
 
   <div class="container">
-    
+
     <h1 class="text-center">Menú de Platillos </h1>
-    
+
     <div class="row">
       <?php
       require_once("db.php");
@@ -94,6 +93,9 @@
           echo '</div>';
         }
       } else {
+        echo '<div class="col-md-12">
+        <a href="index.php" class="btn btn-primary mb-3">Ir a inicio</a>
+        </div>';
         echo '<div class="alert alert-info">No hay platillos habilitados en la base de datos.</div>';
       }
 

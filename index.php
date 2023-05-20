@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Lista de Platillos</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -9,6 +10,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
@@ -72,12 +74,12 @@
     $sql = "SELECT * FROM platillos";
     $result = $conn->query($sql);
 
+    echo '<div> 
+    <a href="add.php" class="btn btn-success mb-3">Agregar Platillo</a>
+    <a href="pantallaplatillos.php" class="btn btn-primary mb-3">Ver Platillos</a>
+    <a href="login.php" class="btn btn-success mb-3">Cerrar sesión</a>
+    </div>';
     if ($result->num_rows > 0) {
-      echo '<div> 
-      <a href="add.php" class="btn btn-success mb-3">Agregar Platillo</a>
-      <a href="pantallaplatillos.php" class="btn btn-primary mb-3">Ver Platillos</a>
-      <a href="login.php" class="btn btn-success mb-3">Cerrar sesión</a>
-      </div>';
       echo '<table class="table">';
       echo '<thead class="thead-dark">';
       echo '<tr>';
@@ -108,14 +110,14 @@
 
         if (isset($row["habilitado"])) {
           if ($row["habilitado"] == 1) {
-              echo '<a href="?action=deshabilitar&id=' . $row["id"] . '" class="btn btn-warning btn-sm">Deshabilitar</a>';
+            echo '<a href="?action=deshabilitar&id=' . $row["id"] . '" class="btn btn-warning btn-sm">Deshabilitar</a>';
           } else {
-              echo '<a href="?action=habilitar&id=' . $row["id"] . '" class="btn btn-success btn-sm">Habilitar</a>';
+            echo '<a href="?action=habilitar&id=' . $row["id"] . '" class="btn btn-success btn-sm">Habilitar</a>';
           }
-      } else {
-          
+        } else {
+
           echo "Error: 'habilitado' key not found in the array.";
-      }
+        }
 
         echo ' <a href="edit.php?id=' . $row["id"] . '" class="btn btn-primary btn-sm">Editar</a>';
         echo ' <a href="delete.php?id=' . $row["id"] . '" class="btn btn-danger btn-sm">Eliminar</a>';
@@ -125,10 +127,6 @@
       echo '</tbody>';
       echo '</table>';
     } else {
-      echo '<div> 
-      <a href="add.php" class="btn btn-success mb-3">Agregar Platillo</a>
-      <a href="pantallaplatillos.php" class="btn btn-primary mb-3">Ver Platillos</a>
-      </div>';
       echo '<div class="alert alert-info">No hay platillos en la base de datos.</div>';
     }
 
@@ -142,4 +140,5 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>
