@@ -65,9 +65,14 @@
       <label for="imagen">Imagen:</label>
       <input type="text" class="form-control" name="imagen" value="<?php echo $imagen;?>" required>
     </div>
+    
     <input type="submit" class="btn btn-primary" value="Actualizar">
-  </form>
+    <a href="index.php" class="btn btn-success ">Regresar</a>
+
+  </form> 
+  
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
