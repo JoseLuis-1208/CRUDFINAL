@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Eliminar Platillo</title>
+  <title>Deshabilitar Platillo</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 
 <div class="container mt-5">
-  <h1>Eliminar Platillo</h1>
+  <h1>Deshabilitar Platillo</h1>
 
   <?php
   require_once("db.php");
 
   $id = $_GET["id"];
 
-  $sql = "DELETE FROM platillos WHERE id='$id'";
+  $sql = "UPDATE platillos SET habilitado=0 WHERE id='$id'";
 
   if ($conn->query($sql) === TRUE) {
-    echo '<div class="alert alert-success">Platillo eliminado correctamente.</div>';
+    echo '<div class="alert alert-success">Platillo deshabilitado correctamente.</div>';
   } else {
-    echo '<div class="alert alert-danger">Error al eliminar el platillo: ' . $conn->error . '</div>';
+    echo '<div class="alert alert-danger">Error al deshabilitar el platillo: ' . $conn->error . '</div>';
   }
 
   $conn->close();

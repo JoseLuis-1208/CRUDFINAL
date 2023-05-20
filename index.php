@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Lista de Platillos</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -10,7 +9,6 @@
     }
   </style>
 </head>
-
 <body>
 
   <div class="container">
@@ -47,6 +45,26 @@
         }
       } else {
         echo '<div class="alert alert-danger">Error: No se encontró el platillo.</div>';
+      }
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["action"]) && $_GET["action"] === "deshabilitar" && isset($_GET["id"])) {
+      $id = $_GET["id"];
+
+      $updateSql = "UPDATE platillos SET habilitado='0' WHERE id='$id'";
+      if ($conn->query($updateSql) === TRUE) {
+        echo '<div class="alert alert-success">Platillo deshabilitado correctamente.</div>';
+      } else {
+        echo '<div class="alert alert-danger">Error al deshabilitar el platillo: ' . $conn->error . '</div>';
+      }
+    } elseif ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["action"]) && $_GET["action"] === "habilitar" && isset($_GET["id"])) {
+      $id = $_GET["id"];
+
+      $updateSql = "UPDATE platillos SET habilitado='1' WHERE id='$id'";
+      if ($conn->query($updateSql) === TRUE) {
+        echo '<div class="alert alert-success">Platillo habilitado correctamente.</div>';
+      } else {
+        echo '<div class="alert alert-danger">Error al habilitar el platillo: ' . $conn->error . '</div>';
       }
     }
 
@@ -87,7 +105,14 @@
         echo '<input type="number" name="cantidad" min="1" max="' . $row["Stock"] . '" required>';
         echo '<input type="submit" class="btn btn-success btn-sm" value="Vender">';
         echo '</form>';
-        echo '<a href="edit.php?id=' . $row["id"] . '" class="btn btn-primary btn-sm">Editar</a>';
+
+        if ($row["habilitado"] == 1) {
+          echo '<a href="?action=deshabilitar&id=' . $row["id"] . '" class="btn btn-warning btn-sm">Deshabilitar</a>';
+        } else {
+          echo '<a href="?action=habilitar&id=' . $row["id"] . '" class="btn btn-success btn-sm">Habilitar</a>';
+        }
+
+        echo ' <a href="edit.php?id=' . $row["id"] . '" class="btn btn-primary btn-sm">Editar</a>';
         echo ' <a href="delete.php?id=' . $row["id"] . '" class="btn btn-danger btn-sm">Eliminar</a>';
         echo '</td>';
         echo '</tr>';
@@ -112,5 +137,4 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
-
 </html>
