@@ -106,10 +106,15 @@
         echo '<input type="submit" class="btn btn-success btn-sm" value="Vender">';
         echo '</form>';
 
-        if ($row["habilitado"] == 1) {
-          echo '<a href="?action=deshabilitar&id=' . $row["id"] . '" class="btn btn-warning btn-sm">Deshabilitar</a>';
+        if (isset($row["habilitado"])) {
+          if ($row["habilitado"] == 1) {
+              echo '<a href="?action=deshabilitar&id=' . $row["id"] . '" class="btn btn-warning btn-sm">Deshabilitar</a>';
+          } else {
+              echo '<a href="?action=habilitar&id=' . $row["id"] . '" class="btn btn-success btn-sm">Habilitar</a>';
+          }
       } else {
-          echo '<a href="?action=habilitar&id=' . $row["id"] . '" class="btn btn-success btn-sm">Habilitar</a>';
+          
+          echo "Error: 'habilitado' key not found in the array.";
       }
 
         echo ' <a href="edit.php?id=' . $row["id"] . '" class="btn btn-primary btn-sm">Editar</a>';
