@@ -27,7 +27,8 @@
       echo '<div> 
       <a href="add.php" class="btn btn-success mb-3">Agregar Platillo</a>
       <a href="pantallaplatillos.php" class="btn btn-primary mb-3">Ver Platillos</a>
-      
+      <a href="login.php" class="btn btn-success mb-3">Cerrar sesion</a>
+
       </div>';
       echo '<table class="table">';
       echo '<thead class="thead-dark">';

@@ -56,7 +56,7 @@
         <input type="file" class="form-control-file" name="imagen" required>
       </div>
       <input type="submit" class="btn btn-primary" value="Agregar">
-      <a href="index.php" class="btn btn-secondary">Cancelar</a>
+      <a href="index.php" class="btn btn-secondary">REGRESAR</a>
     </form>
   </div>
 
