@@ -108,9 +108,9 @@
 
         if ($row["habilitado"] == 1) {
           echo '<a href="?action=deshabilitar&id=' . $row["id"] . '" class="btn btn-warning btn-sm">Deshabilitar</a>';
-        } else {
+      } else {
           echo '<a href="?action=habilitar&id=' . $row["id"] . '" class="btn btn-success btn-sm">Habilitar</a>';
-        }
+      }
 
         echo ' <a href="edit.php?id=' . $row["id"] . '" class="btn btn-primary btn-sm">Editar</a>';
         echo ' <a href="delete.php?id=' . $row["id"] . '" class="btn btn-danger btn-sm">Eliminar</a>';
