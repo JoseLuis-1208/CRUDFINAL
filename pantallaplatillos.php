@@ -66,9 +66,12 @@
 </head>
 
 <body>
+<a href="index.php" class="btn btn-primary ">Ir a inicio</a>
 
   <div class="container">
-    <h1 class="text-center">Menú de Platillos</h1>
+    
+    <h1 class="text-center">Menú de Platillos </h1>
+    
     <div class="row">
       <?php
       require_once("db.php");
