@@ -18,6 +18,7 @@
       $nombre = $_POST["nombre"];
       $descripcion = $_POST["descripcion"];
       $precio = $_POST["precio"];
+      $stock = $_POST["stock"];
 
       $imagen = $_FILES["imagen"]["name"];
       $imagen_temporal = $_FILES["imagen"]["tmp_name"];
@@ -25,7 +26,7 @@
 
       move_uploaded_file($imagen_temporal, $carpeta_destino . '/' . $imagen);
 
-      $sql = "INSERT INTO platillos (nombre, descripcion, precio, imagen) VALUES ('$nombre', '$descripcion', '$precio', '$imagen')";
+      $sql = "INSERT INTO platillos (nombre, descripcion, precio, stock, imagen) VALUES ('$nombre', '$descripcion', '$precio', '$stock', '$imagen')";
 
       if ($conn->query($sql) === TRUE) {
         echo '<div class="alert alert-success">Platillo agregado correctamente.</div>';
@@ -52,11 +53,15 @@
         <input type="text" class="form-control" name="precio" required>
       </div>
       <div class="form-group">
+        <label for="stock">Stock:</label>
+        <input type="text" class="form-control" name="stock" required>
+      </div>
+      <div class="form-group">
         <label for="imagen">Imagen:</label>
         <input type="file" class="form-control-file" name="imagen" required>
       </div>
       <input type="submit" class="btn btn-primary" value="Agregar">
-      <a href="index.php" class="btn btn-secondary">REGRESAR</a>
+      <a href="index.php" class="btn btn-secondary">Cancelar</a>
     </form>
   </div>
 

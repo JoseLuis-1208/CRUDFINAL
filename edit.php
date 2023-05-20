@@ -18,9 +18,10 @@
     $nombre = $_POST["nombre"];
     $descripcion = $_POST["descripcion"];
     $precio = $_POST["precio"];
+    $stock = $_POST["stock"];
     $imagen = $_POST["imagen"];
 
-    $sql = "UPDATE platillos SET nombre='$nombre', descripcion='$descripcion', precio='$precio', imagen='$imagen' WHERE id='$id'";
+    $sql = "UPDATE platillos SET nombre='$nombre', descripcion='$descripcion', precio='$precio', stock='$stock', imagen='$imagen' WHERE id='$id'";
 
     if ($conn->query($sql) === TRUE) {
       echo '<div class="alert alert-success">Platillo actualizado correctamente.</div>';
@@ -39,6 +40,7 @@
       $nombre = $row["nombre"];
       $descripcion = $row["descripcion"];
       $precio = $row["precio"];
+      $stock = $row["Stock"];
       $imagen = $row["imagen"];
     } else {
       echo '<div class="alert alert-danger">Error: No se encontró el platillo.</div>';
@@ -60,6 +62,10 @@
     <div class="form-group">
       <label for="precio">Precio:</label>
       <input type="text" class="form-control" name="precio" value="<?php echo $precio;?>" required>
+    </div>
+    <div class="form-group">
+      <label for="stock">Stock:</label>
+      <input type="text" class="form-control" name="stock" value="<?php echo $stock;?>" required>
     </div>
     <div class="form-group">
       <label for="imagen">Imagen:</label>
