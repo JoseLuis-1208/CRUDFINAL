@@ -40,8 +40,11 @@
 <body>
 
   <div class="container">
-    <h1>Lista de Platillos</h1>
-
+    <h1>Platillos Del Dia</h1>
+    <div>   
+      <a href="index.php" class="btn btn-primary mb-3">Ir a inicio</a>
+      
+      </div>
     <div class="row">
       <?php
       require_once("db.php");
@@ -51,6 +54,7 @@
 
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+          
           echo '<div class="col-md-4 centrar">';
           echo '<div class="card">';
           echo '<img src="imagenes/' . $row["imagen"] . '" class="card-img-top" alt="Platillo">';
